@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="NYC_MOtor_Vehicles_Collisions" id="GoogleBigQuery-2f4" database="GoogleBigQuery" >
+	<schema name="NYC_MOtor_Vehicles_Collisions" >
+		<table name="crash_facts" prior="Tbl" >
+			<column name="collision_id" type="string" jt="12" mandatory="y" />
+			<column name="date_id" type="string" jt="12" />
+			<column name="crash_time" type="time" jt="92" />
+			<column name="zip_code" type="string" jt="12" />
+			<column name="on_street_name" type="string" jt="12" />
+			<column name="off_street_name" type="string" jt="12" />
+			<column name="cross_street_name" type="string" jt="12" />
+			<column name="number_of_persons_injured" type="int64" jt="4" />
+			<column name="number_of_persons_killed" type="int64" jt="4" />
+			<column name="number_of_pedestrians_injured" type="int64" jt="4" />
+			<column name="number_of_pedestrians_killed" type="int64" jt="4" />
+			<column name="number_of_cyclists_injured" type="int64" jt="4" />
+			<column name="number_of_cyclists_killed" type="int64" jt="4" />
+			<column name="number_of_motorists_injured" type="int64" jt="4" />
+			<column name="numbers_of_motorists_killed" type="int64" jt="4" />
+			<column name="contributing_factor_vehicle_1" type="string" jt="12" />
+			<column name="contributing_factor_vahicle_2" type="string" jt="12" />
+			<column name="contributing_factor_vehicle_3" type="string" jt="12" />
+			<column name="contributing_factor_vehicle_4" type="string" jt="12" />
+			<column name="contributing_factor_vehicle_5" type="string" jt="12" />
+			<column name="ejection" type="string" jt="12" />
+			<column name="vehicle_type_id" type="array&lt;string&gt;" jt="2003" />
+			<column name="victim_1_id" type="string" jt="12" />
+			<column name="victim_2_id" type="string" jt="12" />
+			<index name="pk_crash_facts" unique="PRIMARY_KEY" >
+				<column name="collision_id" />
+			</index>
+		</table>
+		<table name="date_dimension" prior="Tbl" >
+			<column name="date_id" type="string" jt="12" mandatory="y" />
+			<column name="year" type="int64" jt="4" />
+			<column name="day" type="int64" jt="4" />
+			<column name="month" type="int64" jt="4" />
+			<column name="date" type="date" jt="91" />
+			<index name="pk_date_dimension" unique="PRIMARY_KEY" >
+				<column name="date_id" />
+			</index>
+			<fk name="fk_date_dimension_crash_facts" to_schema="NYC_MOtor_Vehicles_Collisions" to_table="crash_facts" >
+				<fk_column name="date_id" pk="date_id" />
+			</fk>
+		</table>
+		<table name="location_dimension" prior="Tbl" >
+			<column name="zip_code" type="string" jt="12" mandatory="y" />
+			<column name="latitude" type="float" jt="6" />
+			<column name="longitude" type="float" jt="6" />
+			<column name="polygon" type="geography" jt="2002" />
+			<index name="pk_location_dimension" unique="PRIMARY_KEY" >
+				<column name="zip_code" />
+			</index>
+			<fk name="fk_location_dimension_crash_facts" to_schema="NYC_MOtor_Vehicles_Collisions" to_table="crash_facts" >
+				<fk_column name="zip_code" pk="zip_code" />
+			</fk>
+		</table>
+		<table name="vehicle_dimension" prior="Tbl" >
+			<column name="vehicle_type_id" type="string" jt="12" mandatory="y" />
+			<column name="vehicle_type_name" type="string" jt="12" />
+			<index name="pk_vehicle_dimension" unique="PRIMARY_KEY" >
+				<column name="vehicle_type_id" />
+			</index>
+			<fk name="fk_vehicle_dimension_crash_facts" to_schema="NYC_MOtor_Vehicles_Collisions" to_table="crash_facts" >
+				<fk_column name="vehicle_type_id" pk="vehicle_type_id" />
+			</fk>
+		</table>
+		<table name="victim_dimension" prior="Tbl" >
+			<column name="victim_id" type="string" jt="12" />
+			<column name="age" type="int64" jt="4" />
+			<column name="gender" type="int64" jt="4" />
+			<fk name="fk_victim_dimension_crash_facts" to_schema="NYC_MOtor_Vehicles_Collisions" to_table="crash_facts" >
+				<fk_column name="victim_id" pk="victim_1_id" />
+			</fk>
+			<fk name="fk_victim_dimension_crash_facts_0" to_schema="NYC_MOtor_Vehicles_Collisions" to_table="crash_facts" >
+				<fk_column name="victim_id" pk="victim_2_id" />
+			</fk>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout-7d3" show_relation="columns" >
+		<entity schema="NYC_MOtor_Vehicles_Collisions" name="crash_facts" color="C1D8EE" x="496" y="256" />
+		<entity schema="NYC_MOtor_Vehicles_Collisions" name="date_dimension" color="C1D8EE" x="976" y="160" />
+		<entity schema="NYC_MOtor_Vehicles_Collisions" name="location_dimension" color="C1D8EE" x="192" y="208" />
+		<entity schema="NYC_MOtor_Vehicles_Collisions" name="vehicle_dimension" color="C1D8EE" x="864" y="368" />
+		<entity schema="NYC_MOtor_Vehicles_Collisions" name="victim_dimension" color="C1D8EE" x="144" y="400" />
+		<callout x="48" y="48" pointer="Round" >
+			<comment><![CDATA[This is a layout - a diagram with tools.
+- Right-click the layout to create new tables. 
+- Double-click table headers to edit. 
+- For a better understanding of the schema, create multiple layouts.
+- Save the design to the model file, and deploy from 'Schema / Create into the database'.]]></comment>
+		</callout>
+		<browser id="Browse-52" name="fk_date_dimension_crash_facts" confirm_updates="y" >
+			<browse_table schema="NYC_MOtor_Vehicles_Collisions" entity="crash_facts" x="20" y="20" width="270" height="245" >
+				<browse_table schema="NYC_MOtor_Vehicles_Collisions" entity="date_dimension" fk="fk_date_dimension_crash_facts" x="330" y="20" width="500" height="350" />
+			</browse_table>
+		</browser>
+	</layout>
+</project>
