@@ -13,4 +13,4 @@
 
 ## Embedding the visualtion
 
-![alt text](<iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/d3c42db1-bb41-4522-8711-9ce421f4c75f/page/caq0D" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>)
+![alt text](https://lookerstudio.google.com/s/mptb4_j90Io)
