@@ -10,8 +10,10 @@
 ### **Storage:** AWS S3
 ### **Data Warehouse:** Google BigQuery
 
+## Data Flow Map
+![alt text](https://github.com/desert-swarm/dataWarehouse_homework/blob/main/data_flow_diagram.png)
 
 ## Embedding the visualtion
 Link to the Report: https://lookerstudio.google.com/s/mptb4_j90Io
 
-![alt text](https://github.com/desert-swarm/dataWarehouse_homework/blob/main/BIscreenshot.png))
+![alt text](https://github.com/desert-swarm/dataWarehouse_homework/blob/main/BIscreenshot.png)
