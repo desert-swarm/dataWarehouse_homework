@@ -13,4 +13,4 @@
 
 ## Embedding the visualtion
 
-![alt text]([https://lookerstudio.google.com/s/mptb4_j90Io](https://github.com/desert-swarm/dataWarehouse_homework/blob/main/BIscreenshot.png))
+![alt text]([https://lookerstudio.google.com/s/mptb4_j90Io](https://github.com/desert-swarm/dataWarehouse_homework/blob/main/BIscreenshot.png?raw=true))
